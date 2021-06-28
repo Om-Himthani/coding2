@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>IP
+</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+<div id="data"></div>
+<script>
+function callback( response ){
+console.log(response);
+document.getElementById("data").innerHTML= response.IPv4 ;
+}
+$.ajax({
+url:"https://geoip-db.com/jsonp/",
+dataType:"jsonp"
+
+});
+</script>
+</body>
+</html>

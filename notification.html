@@ -1,0 +1,29 @@
+<html>
+<head>
+</head>
+<body>
+<script>
+function showNotification(){
+var notification=new Notification("New message from OPL Multichannel!",{
+body:"Hi Om here";
+
+});
+
+}
+console.log(Notification.permission);
+if(Notification.permission==="granted"){
+
+showNotification();
+}
+else if(Notification.permission !=="denied"){
+Notification.requestPermission().then(permission=>{
+if(permission==="granted"){
+showNotification();
+}
+});
+
+
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+body{
+width:100vw;
+height:100vh;
+}
+.stick-note{
+font-size:50px;
+
+}
+.mai{
+width:100vw;
+height:10vh;
+display:flex;
+padding-left:30px;
+background-color:yellow;
+padding-bottom:30px;
+}
+h1{
+padding-left:30px;
+
+}
+#add{
+margin-left:1200px;
+margin-top:30px;
+border:none;
+padding-left:30px;
+padding-right:30px;
+padding-top:30px;
+padding-bottom:30px;
+background-color:yellow;
+}
+#add:hover{
+background-color:red;
+}
+textarea{
+padding-top:50px;
+padding-bottom:50px;
+
+
+}
+#btn{
+}
+
+.operation{
+display:inline-block;
+float:left;
+}
+</style>
+</head>
+<body>
+<div class="mai">
+<div class="stick-note">
+<i class="fa fa-sticky-note-o" aria-hidden="true"></i>
+</div>
+
+<h1>Keep</h1>
+</div>
+<button  id="add">Add Note</button>
+
+
+<script>
+var addButton=document.querySelector("#add");
+
+var addNewNote =(text = '')=>{
+var note =document.createElement('div');
+note.classList.add('note');
+var htmlData=`<div class="operation">
+<button class="delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+<div class="container">
+<textarea class="storage" type="text"></textarea>
+<p class="text">Text</p>
+<button class="button">Save</button>
+</div>`
+
+note.insertAdjacentHTML('afterbegin',htmlData);
+
+var delButton=note.querySelector('.delete');
+
+delButton.addEventListener('click' , ()=>{
+note.remove();
+
+
+});
+document.body.appendChild(note);
+var storageInput=document.querySelector('.storage');
+var text=document.querySelector('.text');
+var button=document.querySelector('.button');
+var storedInput=localStorage.getItem('textinput');
+if(storageInput){
+text.textContent= storedInput;
+}
+storageInput.addEventListener('input',letter =>{text.textContent = letter.target.value;
+});
+var saveToLocalStorage = () =>{
+localStorage.setItem('textinput',text.textContent);
+}
+button.addEventListener('click',saveToLocalStorage);
+
+}
+
+
+
+
+addButton.addEventListener('click',()=>{addNewNote()});
+</script>
+</body>
+</html>
